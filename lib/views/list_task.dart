@@ -37,6 +37,19 @@ class _ListTask extends State<ListTask> {
                     },
                     icon: const Icon(Icons.delete)),
               )),
-        ));
+        ),
+        bottomNavigationBar: Container(
+            color: Theme.of(context).colorScheme.inversePrimary,
+            alignment: Alignment.center,
+            height: 50.0,
+            child: GestureDetector(
+                onTap: () => Navigator.pushNamed(context, '/create_task'),
+                child: const Text(
+                  'Create Task',
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ))));
   }
 }
