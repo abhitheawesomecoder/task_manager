@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
           ),
           initialRoute: '/',
           routes: {
-            '/': (context) => const ListTask(title: 'List Task'),
+            '/': (context) => const ListTask(title: 'Task List'),
             '/create_task': (context) => const CreateTask(title: 'Create Task')
           },
           //home: const ListTask(title: 'List Task'),

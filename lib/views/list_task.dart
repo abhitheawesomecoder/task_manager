@@ -16,6 +16,11 @@ class _ListTask extends State<ListTask> {
     final taskList = Provider.of<Todo>(context);
     return Scaffold(
         appBar: AppBar(
+          actions: const [
+            Padding(
+                padding: EdgeInsets.only(right: 20),
+                child: Icon(Icons.done_all_outlined))
+          ],
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           title: Text(widget.title),
         ),
@@ -30,12 +35,67 @@ class _ListTask extends State<ListTask> {
                       taskList.markDone(taskList.task[index].id)),
                 ),
                 title: Text(taskList.task[index].title),
-                trailing: IconButton(
-                    onPressed: () {
-                      //delete task
-                      taskList.removeTask(taskList.task[index].id);
-                    },
-                    icon: const Icon(Icons.delete)),
+                trailing: PopupMenuButton(
+                  itemBuilder: (context) => [
+                    PopupMenuItem(
+                      value: 'view',
+                      child: const Row(
+                        children: [
+                          Icon(Icons.info_outline),
+                          SizedBox(width: 10),
+                          Text('View')
+                        ],
+                      ),
+                      onTap: () => Navigator.pushNamed(context, '/create_task'),
+                    ),
+                    PopupMenuItem(
+                      value: 'delete',
+                      child: const Row(children: [
+                        Icon(Icons.delete_outline),
+                        SizedBox(width: 10),
+                        Text('Delete')
+                      ]),
+                      onTap: () => {
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: const Text('Confirm Delete'),
+                                content: const Text(
+                                  'Are you sure you want to delete this task?',
+                                ),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Text('Cancel'),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      // BlocProvider.of<InvoiceCubit>(
+                                      //         context,
+                                      //         listen: false)
+                                      //     .deleteItemById(
+                                      //         token, item.id);
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Text('Delete'),
+                                  ),
+                                ],
+                              );
+                            })
+                      },
+                    ),
+                  ],
+                  onSelected: (value) {
+                    if (value == 'edit') {
+                      // Implement edit item functionality
+                    } else if (value == 'delete') {
+                      // Implement delete item functionality
+                    }
+                  },
+                ),
               )),
         ),
         bottomNavigationBar: Container(
