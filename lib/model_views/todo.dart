@@ -14,6 +14,7 @@ class Todo with ChangeNotifier {
         title: title,
         details: details,
         status: status == null ? false : true));
+    notifyListeners();
   }
 
   // mark task as done and update state

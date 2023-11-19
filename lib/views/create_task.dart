@@ -68,12 +68,7 @@ class _CreateTask extends State<CreateTask> {
                             )),
                         maxLines: 5,
                         controller: taskDetailController,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter task title';
-                          }
-                          return null;
-                        },
+                        maxLength: 150,
                       ),
                     ),
                     Padding(
@@ -87,6 +82,7 @@ class _CreateTask extends State<CreateTask> {
                                 const SnackBar(
                                     content: Text('Task Created Successfully')),
                               );
+                              Navigator.pop(context);
                             }
                           },
                           child: const Text('Create'),
