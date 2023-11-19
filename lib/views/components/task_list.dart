@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:task_manager/model_views/todo.dart';
 import 'package:task_manager/views/components/delete_dialog.dart';
 import 'package:task_manager/views/components/view_dialog.dart';

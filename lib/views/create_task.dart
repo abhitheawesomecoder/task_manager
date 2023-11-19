@@ -77,8 +77,12 @@ class _CreateTask extends State<CreateTask> {
                         child: ElevatedButton(
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              Provider.of<Todo>(context, listen: false)
-                                  .addTask(taskTitleController.text);
+                              taskDetailController.text == ''
+                                  ? Provider.of<Todo>(context, listen: false)
+                                      .addTask(taskTitleController.text)
+                                  : Provider.of<Todo>(context, listen: false)
+                                      .addTask(taskTitleController.text,
+                                          details: taskDetailController.text);
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
                                     content: Text('Task Created Successfully')),

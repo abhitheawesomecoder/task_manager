@@ -13,15 +13,15 @@ class ListTask extends StatelessWidget {
     final taskList = Provider.of<Todo>(context);
     return Scaffold(
         appBar: AppBar(
-          // actions: const [
-          //   Padding(
-          //       padding: EdgeInsets.only(right: 20),
-          //       child: Icon(Icons.done_all_outlined))
-          // ],
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           title: Text(title),
         ),
-        body: TaskList(taskList: taskList),
+        body: taskList.task.isEmpty
+            ? const Center(
+                child: Text("No Task Available, Create One",
+                    style:
+                        TextStyle(color: Color.fromARGB(255, 184, 180, 180))))
+            : TaskList(taskList: taskList),
         bottomNavigationBar: Container(
             color: Theme.of(context).colorScheme.inversePrimary,
             alignment: Alignment.center,

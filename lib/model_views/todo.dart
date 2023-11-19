@@ -3,7 +3,8 @@ import 'package:task_manager/models/task.dart';
 import 'package:uuid/uuid.dart';
 
 class Todo with ChangeNotifier {
-  List<Task> task = <Task>[Task(id: "1", title: "hghjg", status: false)];
+  List<Task> task = <Task>[];
+  //List<Task> task = <Task>[Task(id: "1", title: "hghjg", status: false)];
   // create a new task
   addTask(String title, {String? details, bool? status}) {
     const uuid = Uuid();

@@ -5,7 +5,7 @@ dynamic viewDialog(BuildContext context, String detail) {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Detail'),
+          title: const Text('Detail', style: TextStyle(fontSize: 16)),
           content: Text(detail),
         );
       });
