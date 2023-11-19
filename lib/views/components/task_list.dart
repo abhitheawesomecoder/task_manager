@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:task_manager/model_views/todo.dart';
 
 class TaskList extends StatelessWidget {
@@ -15,7 +16,8 @@ class TaskList extends StatelessWidget {
             leading: Checkbox(
               // mark task done
               value: taskList.task[index].status,
-              onChanged: ((_) => taskList.markDone(taskList.task[index].id)),
+              onChanged: ((_) =>
+                  taskList.toggleStatus(taskList.task[index].id)),
             ),
             title: Text(taskList.task[index].title),
             trailing: PopupMenuButton(
@@ -56,11 +58,8 @@ class TaskList extends StatelessWidget {
                               ),
                               TextButton(
                                 onPressed: () {
-                                  // BlocProvider.of<InvoiceCubit>(
-                                  //         context,
-                                  //         listen: false)
-                                  //     .deleteItemById(
-                                  //         token, item.id);
+                                  Provider.of<Todo>(context, listen: false)
+                                      .removeTask(taskList.task[index].id);
                                   Navigator.pop(context);
                                 },
                                 child: const Text('Delete'),
@@ -71,13 +70,6 @@ class TaskList extends StatelessWidget {
                   },
                 ),
               ],
-              onSelected: (value) {
-                if (value == 'edit') {
-                  // Implement edit item functionality
-                } else if (value == 'delete') {
-                  // Implement delete item functionality
-                }
-              },
             ),
           )),
     );
