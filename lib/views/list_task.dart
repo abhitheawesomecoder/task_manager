@@ -13,11 +13,11 @@ class ListTask extends StatelessWidget {
     final taskList = Provider.of<Todo>(context);
     return Scaffold(
         appBar: AppBar(
-          actions: const [
-            Padding(
-                padding: EdgeInsets.only(right: 20),
-                child: Icon(Icons.done_all_outlined))
-          ],
+          // actions: const [
+          //   Padding(
+          //       padding: EdgeInsets.only(right: 20),
+          //       child: Icon(Icons.done_all_outlined))
+          // ],
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           title: Text(title),
         ),

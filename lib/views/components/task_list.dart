@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:task_manager/model_views/todo.dart';
+import 'package:task_manager/views/components/delete_dialog.dart';
+import 'package:task_manager/views/components/view_dialog.dart';
 
 class TaskList extends StatelessWidget {
   final Todo taskList;
@@ -31,7 +33,11 @@ class TaskList extends StatelessWidget {
                       Text('View')
                     ],
                   ),
-                  onTap: () => Navigator.pushNamed(context, '/create_task'),
+                  onTap: () => taskList.task[index].details != null
+                      ? viewDialog(context, taskList.task[index].details!)
+                      : ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('No Details Available')),
+                        ),
                 ),
                 PopupMenuItem(
                   value: 'delete',
@@ -40,34 +46,7 @@ class TaskList extends StatelessWidget {
                     SizedBox(width: 10),
                     Text('Delete')
                   ]),
-                  onTap: () => {
-                    showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: const Text('Confirm Delete'),
-                            content: const Text(
-                              'Are you sure you want to delete this task?',
-                            ),
-                            actions: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                child: const Text('Cancel'),
-                              ),
-                              TextButton(
-                                onPressed: () {
-                                  Provider.of<Todo>(context, listen: false)
-                                      .removeTask(taskList.task[index].id);
-                                  Navigator.pop(context);
-                                },
-                                child: const Text('Delete'),
-                              ),
-                            ],
-                          );
-                        })
-                  },
+                  onTap: () => deleteDiaolge(context, taskList.task[index].id),
                 ),
               ],
             ),

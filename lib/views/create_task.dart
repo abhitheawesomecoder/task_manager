@@ -51,6 +51,7 @@ class _CreateTask extends State<CreateTask> {
                         ),
                       ),
                       controller: taskTitleController,
+                      maxLength: 30,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter task title';
