@@ -18,7 +18,24 @@ class Todo with ChangeNotifier {
   }
 
   // mark task as done and update state
-  markDone(String id) {}
+  toggleStatus(String id) {
+    final index = task.indexWhere((element) => element.id == id);
+    if (index != -1) {
+      task[index] = Task(
+          id: id,
+          title: task[index].title,
+          details: task[index].details,
+          status: !task[index].status);
+      notifyListeners();
+    }
+  }
+
   // remove task from the task list
-  removeTask(String id) {}
+  removeTask(String id) {
+    final index = task.indexWhere((element) => element.id == id);
+    if (index != -1) {
+      task.removeAt(index);
+      notifyListeners();
+    }
+  }
 }
