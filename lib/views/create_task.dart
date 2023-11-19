@@ -19,6 +19,7 @@ class _CreateTask extends State<CreateTask> {
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
+    taskDetailController.dispose();
     taskTitleController.dispose();
     super.dispose();
   }

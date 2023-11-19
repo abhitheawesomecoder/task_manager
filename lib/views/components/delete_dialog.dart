@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../../model_views/todo.dart';
 
 dynamic deleteDiaolge(context, id) {
+  // dialog to delete task
   return showDialog(
       context: context,
       builder: (BuildContext context) {

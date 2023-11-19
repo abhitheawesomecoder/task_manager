@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 dynamic viewDialog(BuildContext context, String detail) {
+  // dialog to show task detail
   return showDialog(
       context: context,
       builder: (BuildContext context) {
